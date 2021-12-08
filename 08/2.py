@@ -38,7 +38,7 @@ with open('input.txt', 'r') as f:
         score = 0
         for d in display.split(' '): 
             for digit, letters in digits_to_letters.items():
-                if set(d) >= letters >= set(d):
+                if set(d) == letters:
                     if score:
                         score *= 10
                     score += digit
