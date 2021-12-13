@@ -10,23 +10,16 @@ with open('input.txt', 'r') as f:
     for line in f: 
         axis, l = line.strip().split(' ')[-1].split('=')
         instructions.append((axis, int(l)))
+
 for i, (axis, line) in enumerate(instructions):
     new_coordinates = set()
-    if axis == 'x':
-        lx = line
-        for x, y in coordinates:
-            if x > line:
-                new_coordinates.add((line - (x - line), y))
-            else:
-                new_coordinates.add((x, y))
-
-    else:
-        ly = line
-        for x, y in coordinates:
-            if y > line:
-                new_coordinates.add((x, line - (y - line)))
-            else:
-                new_coordinates.add((x, y))
+    for x, y in coordinates:
+        if x > line and axis == 'x':
+            new_coordinates.add((line - (x - line), y))
+        elif y > line and axis == 'y':
+            new_coordinates.add((x, line - (y - line)))
+        else:
+            new_coordinates.add((x, y))
     coordinates = new_coordinates
     if not i: 
         print(len(coordinates))
