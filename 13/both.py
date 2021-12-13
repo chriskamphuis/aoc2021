@@ -16,8 +16,10 @@ for i, (axis, line) in enumerate(instructions):
     for x, y in coordinates:
         if x > line and axis == 'x':
             new_coordinates.add((line - (x - line), y))
+            lx = line
         elif y > line and axis == 'y':
             new_coordinates.add((x, line - (y - line)))
+            ly = line
         else:
             new_coordinates.add((x, y))
     coordinates = new_coordinates
