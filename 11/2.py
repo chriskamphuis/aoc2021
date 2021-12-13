@@ -28,7 +28,7 @@ while True:
             if grid[y2][x2] > 9 and (y2, x2) not in flashed:
                 to_flash_stack.add((y2, x2))
     i+=1
-    if len(flashed) == max_x * max_y or i == 500:
+    if len(flashed) == max_x * max_y:
         break
     for y, x in flashed:
         grid[y][x] = 0
