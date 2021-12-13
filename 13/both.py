@@ -6,10 +6,6 @@ with open('input.txt', 'r') as f:
     while line:
         x, y = line.split(',')
         coordinates.add((int(x), int(y)))
-        if int(x) > lx:
-            lx = int(x)
-        if int(y) > ly:
-            ly = int(y)
         line = f.readline().strip()
     for line in f: 
         axis, l = line.strip().split(' ')[-1].split('=')
@@ -17,7 +13,7 @@ with open('input.txt', 'r') as f:
 for i, (axis, line) in enumerate(instructions):
     new_coordinates = set()
     if axis == 'x':
-        lx //= 2
+        lx = line
         for x, y in coordinates:
             if x > line:
                 new_coordinates.add((line - (x - line), y))
@@ -25,7 +21,7 @@ for i, (axis, line) in enumerate(instructions):
                 new_coordinates.add((x, y))
 
     else:
-        ly //= 2
+        ly = line
         for x, y in coordinates:
             if y > line:
                 new_coordinates.add((x, line - (y - line)))
