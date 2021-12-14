@@ -8,8 +8,6 @@ with open('input.txt', 'r') as f:
     f.readline()
     instructions = {a:b for a, b in [line.strip().split(' -> ') for line in f]}
 
-first, last = polymer[0], polymer[-1]
-
 for i in range(len(polymer)-1):
     duo[''.join(polymer[i:i+2])] += 1
 
@@ -25,6 +23,6 @@ count = defaultdict(int)
 for key, value in duo.items():
     for letter in key:
         count[letter] += value
-count[first] +=1
-count[last] += 1
+count[polymer[0]] += 1
+count[polymer[-1]] += 1
 print(int(max(count.values())/2 - min(count.values())/2))
