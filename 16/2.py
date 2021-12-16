@@ -19,8 +19,7 @@ def process_packet(bits):
     operator =  int(next(bits), 2)
     values = []
     if operator == 0:
-        len_sub_packets = int(''.join(next(bits) for _ in range(15)), 2)
-        subpackets = (next(bits) for b in range(len_sub_packets))
+        subpackets = (next(bits) for b in range(int(''.join(next(bits) for _ in range(15)), 2)))
         while True: 
             try:
                 values.append(process_packet(subpackets))
