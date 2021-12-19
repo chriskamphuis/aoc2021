@@ -1,0 +1,47 @@
+lines = (eval(l) for l in open('input2.txt'))
+
+class Node:
+    def __init__(self, n1, n2):
+        if not type(n1)==list: self.l = n1
+        else: self.l = Node(n1[0], n1[1])
+        if not type(n2)==list: self.r = n2
+        else: self.r = Node(n2[0], n2[1])
+
+    def __str__(self):
+        return f'[{str(self.l)}, {str(self.r)}]'
+
+    def reduce(self):
+        while True:
+            if nested := self.find_nested():
+                 
+                break
+                self.explode()
+            elif self.ge_ten():
+                self.split()
+            else: break
+
+    def explode(self):
+        pass
+
+    def split(self):
+        pass
+
+    def add(self, n):
+        return Node(self, n).reduce()
+
+    def find_nested(self, nested=[], depth=4):
+        if depth == 0: nested.append(self)
+        if type(self.l) == Node: self.l.find_nested(nested, depth-1)
+        if type(self.r) == Node: self.r.find_nested(nested, depth-1)
+        return nested
+
+    def ge_ten(self):
+        pass
+
+l, r = next(lines)
+start = Node(l, r)
+print(start)
+for l, r in lines:
+    start = start.add(Node(l, r))
+    print(start)
+    break
